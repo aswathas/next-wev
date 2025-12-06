@@ -1,0 +1,142 @@
+.wizardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.mainPanel {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar {
+    flex: 0 0 300px;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .wizardContainer {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex: 1;
+        min-width: 100%;
+    }
+}
+
+.stepCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.activeStep {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+    background: rgba(56, 189, 248, 0.05);
+}
+
+.stepNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border: 1px solid var(--glass-border);
+}
+
+.activeStepNumber {
+    background: var(--color-primary);
+    color: black;
+    border-color: var(--color-primary);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.checklist {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.checkItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+}
+
+.checkItem:hover {
+    color: var(--color-text-main);
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-text-muted);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.checked {
+    background: var(--color-green, #10b981);
+    border-color: var(--color-green, #10b981);
+}
+
+.progressBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .wizardContainer {
+        grid-template-columns: 1fr;
+    }
+}
