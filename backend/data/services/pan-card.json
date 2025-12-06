@@ -1,0 +1,52 @@
+{
+    "id": "pan-card",
+    "name": "New PAN Card (Form 49A)",
+    "version": "2.0",
+    "last_updated": "2024-01-15",
+    "description": "Comprehensive guide to apply for a Permanent Account Number (PAN) for Indian Citizens.",
+    "official_link": "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
+    "eligibility": [
+        "Must be an Indian Citizen",
+        "Must not already hold a PAN card",
+        "Must have valid Proof of Identity, Address, and Date of Birth"
+    ],
+    "steps": [
+        {
+            "step_id": 1,
+            "title": "Eligibility & Prerequisites",
+            "description": "Before starting, ensure you have a valid mobile number linked to Aadhaar (for paperless e-KYC).",
+            "action_label": "Check Eligibility",
+            "details": "You need Aadhaar linked mobile for OTP. If not, you must send physical documents."
+        },
+        {
+            "step_id": 2,
+            "title": "Choose Portal",
+            "description": "Visit the official NSDL (Protean) or UTIITSL website.",
+            "link": "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
+            "action_label": "Open Official Portal",
+            "details": "Select 'New PAN - Indian Citizen (Form 49A)' from the dropdown."
+        },
+        {
+            "step_id": 3,
+            "title": "Fill Personal Details",
+            "description": "Enter your Name, Date of Birth, and Email exactly as per Aadhaar.",
+            "action_label": "Simulate Entry",
+            "details": "Mistake Warning: Initials must match Aadhaar. Do not use prefixes like Mr./Ms. in the name fields if not required."
+        },
+        {
+            "step_id": 4,
+            "title": "Choose Mode",
+            "description": "Select 'Digital (Paperless)' for fastest processing.",
+            "action_label": "See Details",
+            "details": "Digital Mode: Sign using Aadhaar OTP. Physical Mode: Print, Sign, and Post documents."
+        }
+    ],
+    "checklist": [
+        "Aadhaar Card (Linked with Mobile)",
+        "Passport Size Photo (JPEG, <50KB)",
+        "Scanned Signature (JPEG, <20KB)",
+        "Credit/Debit Card or UPI for Payment (~₹107)",
+        "Printer (if choosing physical mode)"
+    ],
+    "legal_disclaimer": "This is an educational guide. We do not process applications."
+}

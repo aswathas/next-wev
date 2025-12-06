@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+langchain
+langchain-groq
+pydantic
+python-dotenv
+pytest
+httpx
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-instrumentation-fastapi
+sentry-sdk
