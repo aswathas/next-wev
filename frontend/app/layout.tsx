@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import Header from "./components/Header";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -16,15 +18,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
-        <div className="disclaimer-banner">
-          ⚠️ OFFICIAL DISCLAIMER: This is NOT a government website. Guidance Only. No PII Stored.
-        </div>
-        <main>
-          {children}
-        </main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+          <div className="disclaimer-banner">
+            ⚠️ OFFICIAL DISCLAIMER: This is NOT a government website. Guidance Only. No PII Stored.
+          </div>
+          <Header />
+          <main>
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

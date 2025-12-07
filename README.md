@@ -64,21 +64,27 @@ Built with **Next.js 14+ (App Router)** focusing on "Glassmorphism" design.
 - Python (v3.10+)
 - A Groq API Key
 
-### 1. Start the Backend
+### 1. Start the Backend (Local Development)
 ```bash
 cd backend
 # Create virtual env
 python -m venv venv
-.\venv\Scripts\activate
+.\venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Create .env file
-echo GROQ_API_KEY=your_key_here > .env
+# Create .env file (copy from .env.example)
+# Set GROQ_API_KEY=your_key_here
+# Set ENVIRONMENT=development
+# Set FRONTEND_URL=http://localhost:3000
 
 # Run Server
 uvicorn app.main:app --reload
+# Or use the startup script:
+# bash start.sh  # Linux/Mac
+# start.bat      # Windows
 ```
 *Backend runs on: `http://localhost:8000`*
 
@@ -92,6 +98,38 @@ npm install
 npm run dev
 ```
 *Frontend runs on: `http://localhost:3000`*
+
+## 🚀 Deployment to Render
+
+### Backend Deployment
+
+1. **Push your code to GitHub**
+
+2. **Create a new Web Service on Render**
+   - Connect your GitHub repository
+   - Select the `backend` directory as the root directory
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+
+3. **Set Environment Variables in Render Dashboard:**
+   - `ENVIRONMENT` = `production`
+   - `GROQ_API_KEY` = Your Groq API key
+   - `FRONTEND_URL` = Your frontend URL (e.g., `https://your-app.vercel.app`)
+   - `ADDITIONAL_ORIGINS` = (Optional) Comma-separated additional origins
+
+4. **Alternative: Use render.yaml**
+   - The `backend/render.yaml` file is configured for automatic deployment
+   - You'll still need to set `GROQ_API_KEY` and `FRONTEND_URL` in the Render dashboard
+
+### Environment Variables
+
+The backend supports the following environment variables:
+
+- `ENVIRONMENT`: `development` or `production` (default: `development`)
+- `FRONTEND_URL`: Frontend URL for CORS (default: `http://localhost:3000`)
+- `ADDITIONAL_ORIGINS`: Comma-separated list of additional allowed origins
+- `GROQ_API_KEY`: Your Groq API key for AI features
+- `PORT`: Server port (default: `8000`, Render sets this automatically)
 
 ---
 

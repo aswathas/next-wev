@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: frombuddy-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: GROQ_API_KEY
+        sync: false  # Set this in Render dashboard
+      - key: FRONTEND_URL
+        sync: false  # Set this to your frontend URL (e.g., https://your-app.vercel.app)
+      - key: ADDITIONAL_ORIGINS
+        value: ""  # Optional: comma-separated list of additional allowed origins
+

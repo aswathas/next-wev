@@ -4,6 +4,10 @@ from pydantic import BaseModel
 from typing import List, Optional
 import json
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = FastAPI(
     title="FROMBUDDY API",
@@ -12,16 +16,39 @@ app = FastAPI(
 )
 
 # Legal Compliance & Security: CORS Restriction
-VALID_ORIGINS = [
+# Support multiple environments via environment variables
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development").lower()
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
+# Default origins for development
+DEFAULT_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
 
+# Build allowed origins list
+if ENVIRONMENT == "production":
+    # In production, use the FRONTEND_URL environment variable
+    # Allow both with and without trailing slash
+    allowed_origins = [FRONTEND_URL.rstrip("/")]
+    if not FRONTEND_URL.endswith("/"):
+        allowed_origins.append(f"{FRONTEND_URL}/")
+else:
+    # In development, use default origins plus any custom frontend URL
+    allowed_origins = DEFAULT_ORIGINS.copy()
+    if FRONTEND_URL not in DEFAULT_ORIGINS:
+        allowed_origins.append(FRONTEND_URL.rstrip("/"))
+
+# Allow additional origins from environment variable (comma-separated)
+ADDITIONAL_ORIGINS = os.getenv("ADDITIONAL_ORIGINS", "")
+if ADDITIONAL_ORIGINS:
+    allowed_origins.extend([origin.strip() for origin in ADDITIONAL_ORIGINS.split(",")])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=VALID_ORIGINS,
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -81,10 +108,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from typing import List, Optional
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 # --- Data Structures for AI Output ---
 class Step(BaseModel):

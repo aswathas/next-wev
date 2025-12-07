@@ -2,7 +2,38 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### 2. Set Up Clerk Authentication
+
+1. Create a free account at [Clerk](https://clerk.com)
+2. Create a new application in the Clerk Dashboard
+3. Copy your API keys from the **API Keys** section
+4. Create a `.env.local` file in the `frontend` directory:
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+```
+
+5. (Optional) Customize authentication URLs:
+
+```env
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+```
+
+### 3. Run the Development Server
 
 ```bash
 npm run dev
@@ -18,7 +49,25 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Authentication
+
+This project uses [Clerk](https://clerk.com) for authentication. The following routes are set up:
+
+- **Public Routes**: `/`, `/sign-in`, `/sign-up`, `/services/*`
+- **Protected Routes**: All other routes require authentication
+
+### Authentication Components
+
+- `Header` - Navigation bar with auth buttons
+- `UserButton` - User profile menu (shown when signed in)
+- `AuthButtons` - Sign in/Sign up buttons (shown when signed out)
+
+### Pages
+
+- `/sign-in` - Sign in page
+- `/sign-up` - Sign up page
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load fonts.
 
 ## Learn More
 
