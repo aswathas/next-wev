@@ -22,6 +22,7 @@ pnpm install
 ```env
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
 CLERK_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
 5. (Optional) Customize authentication URLs:
@@ -32,6 +33,8 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 ```
+
+**Note**: `NEXT_PUBLIC_API_URL` should point to your backend API. For local development, use `http://localhost:8000`. For production, use your Render backend URL.
 
 ### 3. Run the Development Server
 

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from './chat.module.css';
 import ServiceWizard from '@/app/components/ServiceWizard';
+import { getApiUrl } from '@/app/lib/api';
 
 // Define Message Interface
 interface Message {
@@ -74,7 +75,7 @@ export default function AIExplainPage() {
 
         try {
             // 2. Call AI API (now returns Structured Guide + Explanation)
-            const res = await fetch('http://127.0.0.1:8000/api/explain?query=' + encodeURIComponent(text), {
+            const res = await fetch(getApiUrl(`api/explain?query=${encodeURIComponent(text)}`), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             });

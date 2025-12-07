@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { getApiUrl } from '@/app/lib/api';
 
 interface Service {
     id: string;
@@ -18,7 +19,7 @@ export default function ServicesPage() {
     useEffect(() => {
         async function fetchServices() {
             try {
-                const res = await fetch('http://127.0.0.1:8000/api/services');
+                const res = await fetch(getApiUrl('api/services'));
                 if (!res.ok) throw new Error('Failed to fetch services');
                 const data = await res.json();
                 setServices(data);

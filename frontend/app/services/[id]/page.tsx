@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import ServiceWizard from '@/app/components/ServiceWizard';
+import { getApiUrl } from '@/app/lib/api';
 
 interface Step {
     step_id: number;
@@ -40,7 +41,7 @@ export default function ServiceDetailPage() {
 
         async function fetchService() {
             try {
-                const res = await fetch(`http://127.0.0.1:8000/api/services/${id}`);
+                const res = await fetch(getApiUrl(`api/services/${id}`));
                 if (!res.ok) {
                     if (res.status === 404) throw new Error("Service not found");
                     throw new Error('Failed to fetch service details');
